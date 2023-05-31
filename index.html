@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-container">
+        <form id="search-form">
+          <input
+            type="text"
+            name="searchField"
+            placeholder="Enter a city..."
+            autocomplete="off"
+            class="search-field"
+            id="search-field"
+          />
+          <button type="submit" class="search-button">
+            <img
+              src="images/icons/icons8-search-100.png"
+              alt="Search button"
+              class="search-icon"
+            />
+          </button>
+          <button class="location-button" id="location-button">
+            <img
+              src="images/icons/icons8-location-100.png"
+              alt="Location button"
+              class="location-icon"
+            />
+          </button>
+        </form>
+
+        <div class="current-location">
+          <h1 class="current-location__title">
+            <span id="city"></span>,<span id="country"> </span>
+          </h1>
+          <ul>
+            <li class="current-location__date" id="date">Monday 8 May</li>
+            <li class="current-location__time" id="time">15:00</li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="current-temperature">
+              <div class="current-temperature__icon-container">
+                <img
+                  src="images/weather-clear.svg"
+                  alt="Mostly sunny"
+                  class="current-temperature__image"
+                />
+              </div>
+
+              <div class="current-temperature__content-container">
+                <div class="current-temperature__value">
+                  <span id="current-degrees"></span
+                  ><span class="current-temperature__units"
+                    ><a
+                      href="#"
+                      class="current-temperature__degrees"
+                      id="celcius"
+                      >°C</a
+                    >/<a
+                      href="#"
+                      class="current-temperature__degrees"
+                      id="fahrenheit"
+                      >°F</a
+                    ></span
+                  >
+                </div>
+                <div class="current-temperature__summary" id="summary">
+                  Mostly sunny
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="current-stats">
+              <div>
+                <div class="current-stats__value"><span id="max"></span>°</div>
+                <div class="current-stats__label">Max</div>
+                <div class="current-stats__value"><span id="min"></span>°</div>
+                <div class="current-stats__label">Min</div>
+              </div>
+
+              <div>
+                <div class="current-stats__value">
+                  <span id="feels-like"></span>°
+                </div>
+                <div class="current-stats__label">Feels like</div>
+                <div class="current-stats__value">
+                  <span id="wind"></span> km/h
+                </div>
+                <div class="current-stats__label">Wind</div>
+              </div>
+
+              <div>
+                <div class="current-stats__value">
+                  <span id="humidity"></span>%
+                </div>
+                <div class="current-stats__label">Humidity</div>
+                <div class="current-stats__value">
+                  <span id="pressure"></span>mbar
+                </div>
+                <div class="current-stats__label">Pressure</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="next-6-days">
+          <h2 class="next-6-days__title">Next 6 days</h2>
+          <div class="next-6-days__container">
+            <div class="next-6-days__blocks">
+              <div>Tue</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>14° 5°</div>
+            </div>
+
+            <div class="next-6-days__blocks">
+              <div>Wed</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>16° 6°</div>
+            </div>
+
+            <div class="next-6-days__blocks">
+              <div>Thu</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>17° 7°</div>
+            </div>
+
+            <div class="next-6-days__blocks">
+              <div>Fri</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>19° 9°</div>
+            </div>
+
+            <div class="next-6-days__blocks">
+              <div>Sat</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>21° 10°</div>
+            </div>
+
+            <div class="next-6-days__blocks">
+              <div>Sun</div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>23° 12°</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
