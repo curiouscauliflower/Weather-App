@@ -17,7 +17,7 @@ li {
 .weather-container {
     margin: 30px auto;
     padding: 40px;
-    width: 900px;
+    max-width: 900px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     background-color: #d8edf1;
     opacity: 0.95;
