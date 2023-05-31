@@ -164,3 +164,18 @@ li {
     width: 54px;
     height: 54px;
 }
+
+.who-codes {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.github-link {
+    text-decoration: none;
+}
+
+.github-link:hover {
+    color: #061a2b;
+    text-decoration: underline;
+}
