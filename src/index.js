@@ -1,5 +1,7 @@
-//Date
-function formatDate(current) {
+//Current Date
+function formatDate() {
+  let current = new Date();
+
   let days = [
     "Sunday",
     "Monday",
@@ -33,28 +35,21 @@ function formatDate(current) {
   return `${currentDay} ${currentDate} ${currentMonth}`;
 }
 
-let date = document.querySelector("#date");
-let nowDate = new Date();
-date.innerHTML = formatDate(nowDate);
-
-//Time
-function formatTime(currentT) {
-  let currentHours = currentT.getHours();
+//Current Time
+function formatTime(timestamp) {
+  let currentTime = new Date(timestamp * 1000);
+  let currentHours = currentTime.getHours();
   if (currentHours < 10) {
     currentHours = `0${currentHours}`;
   }
 
-  let currentMinutes = currentT.getMinutes();
+  let currentMinutes = currentTime.getMinutes();
   if (currentMinutes < 10) {
     currentMinutes = `0${currentMinutes}`;
   }
 
   return `${currentHours}:${currentMinutes}`;
 }
-
-let time = document.querySelector("#time");
-let nowTime = new Date();
-time.innerHTML = formatTime(nowTime);
 
 //Search form
 function searchCity(city) {
@@ -102,6 +97,10 @@ function showCurrentDescription(response) {
 }
 
 function showCurrentWeather(response) {
+  document.querySelector("#date").innerHTML = formatDate();
+
+  document.querySelector("#time").innerHTML = formatTime(response.data.time);
+  
   document.querySelector("#city").innerHTML = response.data.city;
 
   document.querySelector("#country").innerHTML = response.data.country;
