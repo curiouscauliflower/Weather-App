@@ -90,8 +90,9 @@ function formatTime(timestamp) {
 function showCurrentWeatherIcon(response) {
   let iconUrl = response.data.condition.icon_url;
   let icon = document.querySelector("#icon");
-
+  let description = response.data.condition.description;
   icon.setAttribute("src", iconUrl);
+  icon.setAttribute("alt", description);
 }
 
 //Description with a capital letter
