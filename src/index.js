@@ -87,6 +87,13 @@ function formatTime(timestamp) {
   return `${currentHours}:${currentMinutes}`;
 }
 
+function showCurrentWeatherIcon(response) {
+  let iconUrl = response.data.condition.icon_url;
+  let icon = document.querySelector("#icon");
+
+  icon.setAttribute("src", iconUrl);
+}
+
 //Description with a capital letter
 function showCurrentDescription(response) {
   let currentDescription = response.data.condition.description;
@@ -104,6 +111,8 @@ function showCurrentWeather(response) {
   document.querySelector("#city").innerHTML = response.data.city;
 
   document.querySelector("#country").innerHTML = response.data.country;
+
+  showCurrentWeatherIcon(response);
 
   document.querySelector("#current-degrees").innerHTML = Math.round(response.data.temperature.current);
 
@@ -135,7 +144,6 @@ function showPosition(position) {
   let apiKey = "671758b590o71f73f4ceca7at502e7ba";
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
   let apiUrl = `${apiEndpoint}?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(showCurrentWeather);
 }
 
