@@ -83,11 +83,6 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", inputCity);
 
 //Geolocation
-function showCurrentCity(response) {
-  let currentCity = response.data.name;
-  let cityName = document.querySelector("#city");
-  cityName.innerHTML = currentCity;
-}
 
 function showCurrentCountry(response) {
   let currentCountry = response.data.sys.country;
@@ -100,12 +95,6 @@ function showCurrentCountry(response) {
   }
 }
 
-function showCurrentTemp(response) {
-  let currentTemperature = Math.round(response.data.main.temp);
-  let temperature = document.querySelector("#current-degrees");
-  temperature.innerHTML = currentTemperature;
-}
-
 function showCurrentDescription(response) {
   let currentDescription = response.data.weather[0].description;
   let summary = document.querySelector("#summary");
@@ -113,55 +102,26 @@ function showCurrentDescription(response) {
     currentDescription.charAt(0).toUpperCase() + currentDescription.slice(1);
 }
 
-function showCurrentMaxTemp(response) {
-  let currentMaxTemp = Math.round(response.data.main.temp_max);
-  let maxTemp = document.querySelector("#max");
-  maxTemp.innerHTML = currentMaxTemp;
-}
-
-function showCurrentMinTemp(response) {
-  let currentMinTemp = Math.round(response.data.main.temp_min);
-  let minTemp = document.querySelector("#min");
-  minTemp.innerHTML = currentMinTemp;
-}
-
-function showFeelsLikeTemp(response) {
-  let currentFeelsLikeTemp = Math.round(response.data.main.feels_like);
-  let feelsLikeTemp = document.querySelector("#feels-like");
-  feelsLikeTemp.innerHTML = currentFeelsLikeTemp;
-}
-
-function showCurrentHumidity(response) {
-  let currentHumidity = response.data.main.humidity;
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = currentHumidity;
-}
-
-function showCurrentWindSpeed(response) {
-  let currentWindSpeed = Math.round(response.data.wind.speed);
-  let windSpeed = document.querySelector("#wind");
-  windSpeed.innerHTML = currentWindSpeed;
-}
-
-
-function showCurrentPressure(response) {
-  let currentPressure = Math.round(response.data.main.pressure);
-  let pressure = document.querySelector("#pressure");
-  pressure.innerHTML = currentPressure;
-}
-
-
 function showCurrentWeather(response) {
-  showCurrentCity(response);
+  document.querySelector("#city").innerHTML = response.data.name;
   showCurrentCountry(response);
-  showCurrentTemp(response);
+
+  document.querySelector("#current-degrees").innerHTML = Math.round(response.data.main.temp);
+
   showCurrentDescription(response);
-  showCurrentMaxTemp(response);
-  showCurrentMinTemp(response);
-  showFeelsLikeTemp(response)
-  showCurrentHumidity(response);
-  showCurrentWindSpeed(response);
-  showCurrentPressure(response);
+  
+  document.querySelector("#max").innerHTML = Math.round(response.data.main.temp_max);
+
+  document.querySelector("#min").innerHTML = Math.round(response.data.main.temp_min);
+  
+  document.querySelector("#feels-like").innerHTML = Math.round(response.data.main.feels_like);
+  
+
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+ 
+  document.querySelector("#pressure").innerHTML = Math.round(response.data.main.pressure);
 }
 
 function showPosition(position) {
