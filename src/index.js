@@ -65,6 +65,14 @@ function searchCity(city) {
   axios.get(apiUrl).then(showCurrentWeather);
 }
 
+function searchCityOfMaxMinTemp(city) {
+  let units = "metric";
+  let apiKey = "ad43b41d614c72843d4867ddcfa4c147";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showMaxMinTempInCurrentWeather);
+}
+
 function inputCity(event) {
   event.preventDefault();
   let searchField = document.querySelector("#search-field");
@@ -73,11 +81,13 @@ function inputCity(event) {
   let city = searchField.value.trim();
 
   searchCity(city);
+  searchCityOfMaxMinTemp(city);
 
   searchField.value = "";
 }
 
-searchCity("Kherson")
+searchCity("Kherson");
+searchCityOfMaxMinTemp("Kherson");
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", inputCity);
@@ -100,10 +110,6 @@ function showCurrentWeather(response) {
 
   showCurrentDescription(response);
   
-  //document.querySelector("#max").innerHTML = Math.round(response.data.main.temp_max);
-
-  //document.querySelector("#min").innerHTML = Math.round(response.data.main.temp_min);
-  
   document.querySelector("#feels-like").innerHTML = Math.round(response.data.temperature.feels_like);
   
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
@@ -111,6 +117,12 @@ function showCurrentWeather(response) {
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
  
   document.querySelector("#pressure").innerHTML = Math.round(response.data.temperature.pressure);
+}
+
+function showMaxMinTempInCurrentWeather(response) {
+  document.querySelector("#max").innerHTML = Math.round(response.data.main.temp_max);
+
+  document.querySelector("#min").innerHTML = Math.round(response.data.main.temp_min);
 }
 
 function showPosition(position) {
@@ -124,9 +136,20 @@ function showPosition(position) {
   axios.get(apiUrl).then(showCurrentWeather);
 }
 
+function showPositionOfMaxMinTemp(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let units = "metric";
+  let apiKey = "ad43b41d614c72843d4867ddcfa4c147";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showMaxMinTempInCurrentWeather);
+}
+
 function showCurrentGeolocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
+  navigator.geolocation.getCurrentPosition(showPositionOfMaxMinTemp);
 }
 
 let locationButton = document.querySelector("#location-button");
