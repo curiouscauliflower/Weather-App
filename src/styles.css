@@ -101,13 +101,14 @@ li {
     margin-left: 10px;
 }
 
-.current-temperature__degrees {
+.current-temperature__units .active {
     color: #061a2b;
-    text-decoration: none;
+    cursor: default;
 }
 
-.current-temperature__degrees:hover {
+.current-temperature__degrees {
     color: #c15075;
+    text-decoration: none;
 }
 
 .current-temperature__summary {
@@ -176,6 +177,7 @@ li {
 }
 
 .github-link {
+    color: #c15075;
     text-decoration: none;
 }
 
