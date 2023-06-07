@@ -170,6 +170,28 @@ function showCurrentGeolocation(event) {
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", showCurrentGeolocation);
 
+//Switching of the Container Color
+function showFirstColor() {
+  document.querySelector("#weather-container").style.background = "radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%)";
+}
+
+function showSecondColor() {
+  document.querySelector("#weather-container").style.background = "linear-gradient(185deg, rgba(222, 224, 228, 1) 0%, rgba(142, 215, 165, 1) 50%, rgba(255, 173, 57, 1) 100%)";
+}
+
+function showThirdColor() {
+  document.querySelector("#weather-container").style.background = "linear-gradient(210deg, rgba(222, 228, 228, 1) 0%, rgba(215, 142, 196, 1) 50%, rgba(211, 255, 57, 1) 100%)";
+}
+
+let changeColorFirst = document.querySelector("#btn-1");
+changeColorFirst.addEventListener("click", showFirstColor);
+
+let changeColorSecond = document.querySelector("#btn-2");
+changeColorSecond.addEventListener("click", showSecondColor);
+
+let changeColorThird = document.querySelector("#btn-3");
+changeColorThird.addEventListener("click", showThirdColor);
+
 //Fahrenheit Temperature
 function showFahrenheitTemperature(event) {
   event.preventDefault();
