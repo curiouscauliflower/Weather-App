@@ -174,6 +174,8 @@ locationButton.addEventListener("click", showCurrentGeolocation);
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#current-degrees");
+  celciusTemperature.classList.remove("active");
+  fahrenheitTemperature.classList.add("active");
   let fahrenheitValue = (currentCelciusTemp * 9) / 5 + 32;
   currentTemperature.innerHTML = Math.round(fahrenheitValue);
   
@@ -197,6 +199,8 @@ fahrenheitTemperature.addEventListener("click", showFahrenheitTemperature);
 function showCelciusTemperature(event) {
  event.preventDefault();
   let currentTemperature = document.querySelector("#current-degrees");
+  fahrenheitTemperature.classList.remove("active");
+  celciusTemperature.classList.add("active");
   currentTemperature.innerHTML = currentCelciusTemp;
 
   let currentMaxTemp = document.querySelector("#max");
