@@ -28,9 +28,6 @@ function inputCity(event) {
   searchField.value = "";
 }
 
-searchCity("Kherson");
-searchCityOfMaxMinTemp("Kherson");
-
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", inputCity);
 
@@ -115,11 +112,15 @@ function showCurrentWeather(response) {
 
   showCurrentWeatherIcon(response);
 
-  document.querySelector("#current-degrees").innerHTML = Math.round(response.data.temperature.current);
+  currentCelciusTemp = Math.round(response.data.temperature.current);
+
+  document.querySelector("#current-degrees").innerHTML = currentCelciusTemp;
 
   showCurrentDescription(response);
+
+  currentCelciusFeelsLikeTemp = Math.round(response.data.temperature.feels_like)
   
-  document.querySelector("#feels-like").innerHTML = Math.round(response.data.temperature.feels_like);
+  document.querySelector("#feels-like").innerHTML = currentCelciusFeelsLikeTemp;
   
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   
@@ -131,9 +132,11 @@ function showCurrentWeather(response) {
 
 //Current Weather for High and Low Temp. from another API
 function showMaxMinTempInCurrentWeather(response) {
-  document.querySelector("#max").innerHTML = Math.round(response.data.main.temp_max);
-
-  document.querySelector("#min").innerHTML = Math.round(response.data.main.temp_min);
+  currentCelciusMaxTemp = Math.round(response.data.main.temp_max)
+  document.querySelector("#max").innerHTML = currentCelciusMaxTemp;
+  
+  currentCelciusMinTemp = Math.round(response.data.main.temp_min)
+  document.querySelector("#min").innerHTML = currentCelciusMinTemp;
 }
 
 
@@ -167,23 +170,52 @@ function showCurrentGeolocation(event) {
 let locationButton = document.querySelector("#location-button");
 locationButton.addEventListener("click", showCurrentGeolocation);
 
-//Fahrenheit
-//function showFahrenheitTemp(event) {
-//  event.preventDefault();
-//  let currentTemperature = document.querySelector("#current-degrees");
-//  let fahrenheitValue = (15 * 9) / 5 + 32;
-//  currentTemperature.innerHTML = fahrenheitValue;
-//}
+//Fahrenheit Temperature
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#current-degrees");
+  let fahrenheitValue = (currentCelciusTemp * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(fahrenheitValue);
+  
+  let currentMaxTemp = document.querySelector("#max");
+  let fahrenheitMaxTempValue = (currentCelciusMaxTemp * 9) / 5 + 32;
+  currentMaxTemp.innerHTML = Math.round(fahrenheitMaxTempValue);
 
-//let fahrenheitTemperature = document.querySelector("#fahrenheit");
-//fahrenheitTemperature.addEventListener("click", showFahrenheitTemp);
+  let currentMinTemp = document.querySelector("#min");
+  let fahrenheitMinTempValue = (currentCelciusMinTemp * 9) / 5 + 32;
+  currentMinTemp.innerHTML = Math.round(fahrenheitMinTempValue);
 
-//Celsius
-//function showCelciusTemp(event) {
-// event.preventDefault();
-//  let currentTemperature = document.querySelector("#current-degrees");
-//  currentTemperature.innerHTML = 15;
-//}
+  let currentFeelsLikeTemp = document.querySelector("#feels-like");
+  let fahrenheitFeelsLikeTempValue = (currentCelciusFeelsLikeTemp * 9) / 5 + 32;
+  currentFeelsLikeTemp.innerHTML = Math.round(fahrenheitFeelsLikeTempValue);
+}
 
-//let celciusTemperature = document.querySelector("#celcius");
-//celciusTemperature.addEventListener("click", showCelciusTemp);
+let fahrenheitTemperature = document.querySelector("#fahrenheit");
+fahrenheitTemperature.addEventListener("click", showFahrenheitTemperature);
+
+//Celsius Temperature
+function showCelciusTemperature(event) {
+ event.preventDefault();
+  let currentTemperature = document.querySelector("#current-degrees");
+  currentTemperature.innerHTML = currentCelciusTemp;
+
+  let currentMaxTemp = document.querySelector("#max");
+  currentMaxTemp.innerHTML = currentCelciusMaxTemp;
+
+  let currentMinTemp = document.querySelector("#min");
+  currentMinTemp.innerHTML = currentCelciusMinTemp;
+
+  let currentFeelsLikeTemp = document.querySelector("#feels-like")
+  currentFeelsLikeTemp.innerHTML = currentCelciusFeelsLikeTemp;
+}
+
+let currentCelciusTemp = null;
+let currentCelciusMaxTemp = null;
+let currentCelciusMinTemp = null;
+let currentCelciusFeelsLikeTemp = null;
+
+let celciusTemperature = document.querySelector("#celcius");
+celciusTemperature.addEventListener("click", showCelciusTemperature);
+
+searchCity("Kherson");
+searchCityOfMaxMinTemp("Kherson");
