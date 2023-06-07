@@ -21,7 +21,7 @@ li {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-    opacity: 0.94;
+    opacity: 0.96;
     border-radius: 24px;
     border: none;
 }
@@ -75,6 +75,7 @@ li {
 
 .current-temperature__image {
     width: 156px;
+    height: 156px;
 }
 
 .current-temperature__icon-container {
@@ -89,22 +90,23 @@ li {
 
 .current-temperature__value {
     font-weight: 300;
-    font-size: 76px;
+    font-size: 78px;
 }
 
 .current-temperature__units {
     font-size: 24px;
+    font-weight: 500;
     vertical-align: 120%;
     margin-left: 10px;
 }
 
 .current-temperature__degrees {
-    color: #8a797d;
+    color: #061a2b;
     text-decoration: none;
 }
 
 .current-temperature__degrees:hover {
-    color: #061a2b;
+    color: #c15075;
 }
 
 .current-temperature__summary {
