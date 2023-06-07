@@ -21,36 +21,54 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-container">
-        <form id="search-form">
-          <input
-            type="search"
-            name="searchField"
-            placeholder="Search a city..."
-            autocomplete="off"
-            class="search-field"
-            id="search-field"
-          />
-          <button type="submit" class="search-button">
-            <img
-              src="images/icons/icons8-search-100.png"
-              alt="Search button"
-              class="search-icon"
+      <div id="weather-container" class="weather-container">
+        <header>
+          <div class="row">
+            <div class="col">
+              <img
+                src="images/icons/icons8-weather-100.png"
+                alt="Weather icon"
+                class="header-img"
+              />
+              <h1 class="header-title">Weather App</h1>
+            </div>
+            <div class="col header-buttons">
+              <button type="button" id="btn-1" class="header-btn-1"></button>
+              <button type="button" id="btn-2" class="header-btn-2"></button>
+              <button type="button" id="btn-3" class="header-btn-3"></button>
+            </div>
+          </div>
+        </header>
+        <main>
+          <form id="search-form">
+            <input
+              type="search"
+              name="searchField"
+              placeholder="Search a city..."
+              autocomplete="off"
+              class="search-field"
+              id="search-field"
             />
-          </button>
-          <button class="location-button" id="location-button">
-            <img
-              src="images/icons/icons8-location-100.png"
-              alt="Location button"
-              class="location-icon"
-            />
-          </button>
-        </form>
-
+            <button type="submit" class="search-button">
+              <img
+                src="images/icons/icons8-search-100.png"
+                alt="Search button"
+                class="search-icon"
+              />
+            </button>
+            <button class="location-button" id="location-button">
+              <img
+                src="images/icons/icons8-location-100.png"
+                alt="Location button"
+                class="location-icon"
+              />
+            </button>
+          </form>
+        </main>
         <div class="current-location">
-          <h1 class="current-location__title">
+          <h2 class="current-location__title">
             <span id="city"></span>, <span id="country"></span>
-          </h1>
+          </h2>
           <ul>
             <li class="current-location__date" id="date"></li>
             <li class="current-location__time" id="time"></li>
@@ -130,7 +148,7 @@
         </div>
 
         <div class="next-6-days">
-          <h2 class="next-6-days__title">Next 6 days</h2>
+          <h3 class="next-6-days__title">Next 6 days</h3>
           <div class="next-6-days__container">
             <div class="next-6-days__blocks">
               <div>Tue</div>
@@ -193,19 +211,21 @@
             </div>
           </div>
         </div>
-        <p class="who-codes">
-          <a
-            href="https://github.com/curiouscauliflower/Weather-App.git"
-            target="_blank"
-            rel="noreferrer noopener nofollow"
-            class="github-link"
-            ><img
-              src="images/icons/icons8-github-30.png"
-              alt="Github icon"
-            /><strong>Open-source code</strong></a
-          >
-          by Hanna Tkach
-        </p>
+        <footer>
+          <p class="who-codes">
+            <a
+              href="https://github.com/curiouscauliflower/Weather-App.git"
+              target="_blank"
+              rel="noreferrer noopener nofollow"
+              class="github-link"
+              ><img
+                src="images/icons/icons8-github-30.png"
+                alt="Github icon"
+              /><strong>Open-source code</strong></a
+            >
+            by Hanna Tkach
+          </p>
+        </footer>
       </div>
     </div>
     <script src="src/index.js"></script>
