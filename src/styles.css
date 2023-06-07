@@ -16,7 +16,7 @@ li {
 
 .weather-container {
     margin: 30px auto;
-    padding: 40px;
+    padding: 10px 40px 24px;
     max-width: 900px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     background: rgb(238, 174, 202);
@@ -24,6 +24,50 @@ li {
     opacity: 0.96;
     border-radius: 24px;
     border: none;
+}
+
+.header-image {
+    width: 90px;
+    height: 90px;
+}
+
+.header-title {
+    display: inline;
+    font-size: 36px;
+    position: absolute;
+    top: 68px;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.header-btn-1,
+.header-btn-2,
+.header-btn-3 {
+    border: 1px solid #061a2b;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 16px;
+    margin: 4px;
+}
+
+.header-btn-1 {
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.header-btn-2 {
+    background: rgb(222, 224, 228);
+    background: linear-gradient(185deg, rgba(222, 224, 228, 1) 0%, rgba(142, 215, 165, 1) 50%, rgba(255, 173, 57, 1) 100%);
+}
+
+.header-btn-3 {
+    background: rgb(222, 228, 228);
+    background: linear-gradient(210deg, rgba(222, 228, 228, 1) 0%, rgba(215, 142, 196, 1) 50%, rgba(211, 255, 57, 1) 100%);
 }
 
 .search-field {
