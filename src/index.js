@@ -68,7 +68,7 @@ function formatDate() {
   ];
 
   let currentMonth = months[current.getMonth()];
-  return `${currentDay} ${currentDate} ${currentMonth}`;
+  return `${currentDay}, ${currentMonth} ${currentDate}`;
 }
 
 //Current Time
