@@ -223,6 +223,15 @@ li {
     height: 54px;
 }
 
+.next-6-days__day,
+.next-6-days__day-temp {
+    font-size: 20px;
+}
+
+.next-6-days__night-temp {
+    color: #c15075;
+}
+
 .who-codes {
     text-align: center;
     margin-top: 30px;
