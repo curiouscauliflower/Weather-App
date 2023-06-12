@@ -129,7 +129,6 @@ function showCurrentWeather(response) {
   document.querySelector("#pressure").innerHTML = Math.round(response.data.temperature.pressure);
 }
 
-
 //Current Weather for High and Low Temp. from another API
 function showMaxMinTempInCurrentWeather(response) {
   currentCelciusMaxTemp = Math.round(response.data.main.temp_max)
@@ -139,6 +138,34 @@ function showMaxMinTempInCurrentWeather(response) {
   document.querySelector("#min").innerHTML = currentCelciusMinTemp;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#next-6-days-forecast");
+
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="next-6-days__container">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="next-6-days__blocks">
+              <div><span class="next-6-days__day">${day}</span></div>
+              <img
+                src="images/weather-few-clouds.svg"
+                alt="Mostly cloudy"
+                class="next-6-days__image"
+              />
+              <div>
+                <span class="next-6-days__day-temp">14° </span>
+                <span class="next-6-days__night-temp">5°</span>
+              </div>
+            </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
 //Geolocation API
 function showPosition(position) {
@@ -245,3 +272,4 @@ celciusTemperature.addEventListener("click", showCelciusTemperature);
 
 searchCity("Kherson");
 searchCityOfMaxMinTemp("Kherson");
+displayForecast();
