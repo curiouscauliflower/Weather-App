@@ -224,11 +224,11 @@ li {
 }
 
 .next-6-days__day,
-.next-6-days__day-temp {
+.next-6-days__max-temp {
     font-size: 20px;
 }
 
-.next-6-days__night-temp {
+.next-6-days__min-temp {
     color: #c15075;
 }
 

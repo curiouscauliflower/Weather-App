@@ -156,8 +156,8 @@ function displayForecast() {
                 class="next-6-days__image"
               />
               <div>
-                <span class="next-6-days__day-temp">14° </span>
-                <span class="next-6-days__night-temp">5°</span>
+                <span class="next-6-days__max-temp">14° </span>
+                <span class="next-6-days__min-temp">5°</span>
               </div>
             </div>
   `;
