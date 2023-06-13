@@ -15,6 +15,14 @@ function searchCityOfMaxMinTemp(city) {
   axios.get(apiUrl).then(showMaxMinTempInCurrentWeather);
 }
 
+function searchCityofForecast(city) {
+  let units = "metric";
+  let apiKey = "671758b590o71f73f4ceca7at502e7ba";
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast?query={query}&key={key}";
+  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function inputCity(event) {
   event.preventDefault();
   let searchField = document.querySelector("#search-field");
@@ -22,10 +30,11 @@ function inputCity(event) {
 
   let city = searchField.value.trim();
 
+  searchField.value = "";
+
   searchCity(city);
   searchCityOfMaxMinTemp(city);
-
-  searchField.value = "";
+  searchCityofForecast(city);
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -138,29 +147,39 @@ function showMaxMinTempInCurrentWeather(response) {
   document.querySelector("#min").innerHTML = currentCelciusMinTemp;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#next-6-days-forecast");
-
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
   let forecastHTML = `<div class="next-6-days__container">`;
-  days.forEach(function (day) {
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 7 && index > 0) {
     forecastHTML =
       forecastHTML +
       `
             <div class="next-6-days__blocks">
-              <div><span class="next-6-days__day">${day}</span></div>
+              <div><span class="next-6-days__day">${formatDay(forecastDay.time)}</span></div>
               <img
-                src="images/weather-few-clouds.svg"
-                alt="Mostly cloudy"
+                src="${forecastDay.condition.icon_url}"
+                alt="${forecastDay.condition.description}"
                 class="next-6-days__image"
               />
               <div>
-                <span class="next-6-days__max-temp">14° </span>
-                <span class="next-6-days__min-temp">5°</span>
+                <span class="next-6-days__max-temp">${Math.round(forecastDay.temperature.maximum)}° </span>
+                <span class="next-6-days__min-temp">${Math.round(forecastDay.temperature.minimum)}°</span>
               </div>
             </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -188,10 +207,21 @@ function showPositionOfMaxMinTemp(position) {
   axios.get(apiUrl).then(showMaxMinTempInCurrentWeather);
 }
 
+function showPositionOfForecast(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let units = "metric";
+  let apiKey = "671758b590o71f73f4ceca7at502e7ba";
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast";
+  let apiUrl = `${apiEndpoint}?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showCurrentGeolocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
   navigator.geolocation.getCurrentPosition(showPositionOfMaxMinTemp);
+  navigator.geolocation.getCurrentPosition(showPositionOfForecast)
 }
 
 let locationButton = document.querySelector("#location-button");
@@ -272,4 +302,4 @@ celciusTemperature.addEventListener("click", showCelciusTemperature);
 
 searchCity("Kherson");
 searchCityOfMaxMinTemp("Kherson");
-displayForecast();
+searchCityofForecast("Kherson");
