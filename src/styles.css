@@ -148,20 +148,10 @@ li {
 }
 
 .current-temperature__units {
-    font-size: 24px;
-    font-weight: 500;
-    vertical-align: 120%;
+    font-size: 40px;
+    font-weight: 400;
+    vertical-align: 50%;
     margin-left: 10px;
-}
-
-.current-temperature__units .active {
-    color: #061a2b;
-    cursor: default;
-}
-
-.current-temperature__degrees {
-    color: #c15075;
-    text-decoration: none;
 }
 
 .current-temperature__summary {
