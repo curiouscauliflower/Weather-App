@@ -304,7 +304,7 @@ li {
 /* Extra small: 0px (320px) - 575px */
 @media (max-width: 575px) {
     .weather-container {
-        width: max-content;
+        margin: 10px auto;
         padding: 10px 14px 24px;
     }
 
